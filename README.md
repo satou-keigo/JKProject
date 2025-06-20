@@ -2,6 +2,6 @@
 .uprojectをダブルクリック
 →エディタ内のツールからvisual studioプロジェクトを更新
 →エクスプローラーのvisual studioを開いてビルド
-の作業を必ず行ってね。
-visual studioプロジェクトを更新がない場合は.uprojectを右クリックしてGenerate～をクリックして最初からやってみてね。
+の作業を必ず行え。
+visual studioプロジェクトを更新がない場合は.uprojectを右クリックしてGenerate～をクリックして最初からやれ。
 もちろん自分のブランチの更新も忘れずに
