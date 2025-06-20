@@ -17,6 +17,7 @@ Saved/
 *.user
 *.userprefs
 *.sdf
+*.sln
 *.csproj
 *.xcodeproj
 
