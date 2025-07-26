@@ -16,6 +16,7 @@ void APlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	ICharacterInterface::shot();
 }
 
 // Called every frame
@@ -30,9 +31,4 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-}
-
-void ICharacterInterface::shot()
-{
-	
 }
