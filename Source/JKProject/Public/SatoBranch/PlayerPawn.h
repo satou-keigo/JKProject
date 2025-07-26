@@ -36,6 +36,4 @@ public:
 	void IA_Look(const FInputActionInstance& InputActionInst);
 	void IA_Interact(const FInputActionInstance& InputActionInst);
 
-	void shot();
-
 };
