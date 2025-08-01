@@ -18,8 +18,10 @@ APlayerCharacter::APlayerCharacter()
 	// Input Mapping Context「IMC_Player」を読み込む
 	DefaultMappingContext = LoadObject<UInputMappingContext>(nullptr, TEXT("/Game/satoBranch/Inputs/IMC_Player"));
 
-	// Input Action「IA_Movel」を読み込む
+	// Input Action「IA_Move」を読み込む
 	ControlAction = LoadObject<UInputAction>(nullptr, TEXT("/Game/satoBranch/Inputs/IA_Move"));
+
+	CameraControl = LoadObject<UInputAction>(nullptr, TEXT("/Game/satoBranch/Inputs/IA_Look"));
 
 }
 
@@ -54,6 +56,7 @@ void APlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent)) {
 		// ControlBallとIA_ControlのTriggeredをBindする
 		EnhancedInputComponent->BindAction(ControlAction, ETriggerEvent::Triggered, this, &APlayerCharacter::ControlCharacter);
+		EnhancedInputComponent->BindAction(CameraControl, ETriggerEvent::Triggered, this, &APlayerCharacter::CameraMove);
 	}
 }
 
@@ -63,4 +66,23 @@ void APlayerCharacter::ControlCharacter(const FInputActionValue& Value)
 	const FVector2D V = Value.Get<FVector2D>();
 	AddMovementInput(FVector(0, 1, 0), V.X);
 	AddMovementInput(FVector(1, 0, 0), V.Y);
+}
+
+void APlayerCharacter::CameraMove(const FInputActionValue& Value)
+{
+	// inputのValueはVector2Dに変換できる
+	FVector2D v = Value.Get<FVector2D>();
+
+	if (Controller != nullptr)
+	{
+		// add yaw and pitch input to controller
+		AddControllerYawInput(v.X);
+		AddControllerPitchInput(v.Y);
+
+		// Pawnが持っているControlの角度を取得する
+		FRotator controlRotate = GetControlRotation();
+
+		// PlayerControllerの角度を設定する
+		UGameplayStatics::GetPlayerController(this, 0)->SetControlRotation(FRotator(controlRotate.Pitch, controlRotate.Yaw, 0.0f));
+	}
 }
