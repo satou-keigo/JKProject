@@ -36,5 +36,6 @@ public:
 	void IA_Move(const FInputActionInstance& InputActionInst);
 	void IA_Look(const FInputActionInstance& InputActionInst);
 	void IA_Interact(const FInputActionInstance& InputActionInst);
+	
 
 };
