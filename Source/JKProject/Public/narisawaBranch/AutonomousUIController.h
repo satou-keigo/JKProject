@@ -1,5 +1,3 @@
-// AutonomousUIController.h
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -54,6 +52,10 @@ private:
     /** UI内のButtonへのポインタ */
     UPROPERTY()
     TObjectPtr<UButton> OptionButton2;
+
+    /** UI内のButtonへのポインタ */
+    UPROPERTY()
+    TObjectPtr<UButton> OptionButton3;
 
     /** 話しかける処理を呼び出すためのタイマーハンドル */
     FTimerHandle TalkTimerHandle;

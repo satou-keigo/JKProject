@@ -1,5 +1,3 @@
-// AutonomousUIController.cpp
-
 #include "narisawaBranch/AutonomousUIController.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"
@@ -33,8 +31,9 @@ void AAutonomousUIController::InitializeUI()
             DialogueText = Cast<UTextBlock>(AutonomousWidgetInstance->GetWidgetFromName(TEXT("DialogueText")));
             OptionButton1 = Cast<UButton>(AutonomousWidgetInstance->GetWidgetFromName(TEXT("OptionButton1")));
             OptionButton2 = Cast<UButton>(AutonomousWidgetInstance->GetWidgetFromName(TEXT("OptionButton2")));
+            OptionButton2 = Cast<UButton>(AutonomousWidgetInstance->GetWidgetFromName(TEXT("OptionButton2")));
 
-            if (!DialogueText || !OptionButton1 || !OptionButton2)
+            if (!DialogueText || !OptionButton1 || !OptionButton2 || !OptionButton3)
             {
                 // エラーログ: 必要なウィジェットが見つからない場合
                 UE_LOG(LogTemp, Error, TEXT("AutonomousUIController: Failed to find one or more widgets in WBP_AutonomousUI. Check names."));
@@ -77,6 +76,9 @@ void AAutonomousUIController::ForceSelectOption(int32 OptionIndex)
         break;
     case 2:
         TargetButton = OptionButton2;
+        break;
+    case 3:
+        TargetButton = OptionButton3;
         break;
     default:
         break;
