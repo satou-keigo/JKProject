@@ -5,8 +5,13 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputAction.h"
+#include "InputMappingContext.h"
 #include "CharacterInterface.h"
+#include "Camera/CameraComponent.h"
 #include "PlayerCharacter.generated.h"
+
+class UInputMappingContext;
+class UInputAction;
 
 UCLASS()
 class JKPROJECT_API APlayerCharacter : public ACharacter , public ICharacterInterface
@@ -20,7 +25,7 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+	void ControlCharacter(const FInputActionValue& Value);
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -37,5 +42,15 @@ public:
 	void IA_Look(const FInputActionInstance& InputActionInst);
 	void IA_Interact(const FInputActionInstance& InputActionInst);
 	
+private:
+	/** MappingContext */
+	UPROPERTY(EditAnywhere, Category = Input, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UInputMappingContext> DefaultMappingContext;
 
+	/** Control Input Action */
+	UPROPERTY(EditAnywhere, Category = Input, meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UInputAction> ControlAction;
+	
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<UCameraComponent> Camera;
 };
