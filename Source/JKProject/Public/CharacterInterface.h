@@ -24,4 +24,7 @@ class JKPROJECT_API ICharacterInterface
 public:
 	//âºä÷êî
 	virtual void shot();
+protected:
+	float hp_ = 100;
+	float atk_ = 10;
 };
